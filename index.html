@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#13171f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <base target="_blank">
+  <title>Launchpad</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css?v=10">
+  <script src="config.js?v=2" defer></script>
+  <script src="app.js?v=14" defer></script>
+</head>
+
+<body>
+
+  <main>
+    <header>
+      <div class="hello">
+        <div class="date" id="date"></div>
+        <h1><span id="greeting">Hello</span>, <span id="name">you</span></h1>
+      </div>
+      <div class="search">
+        <label for="q" class="sr-only">Search a link</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input id="q" type="search" placeholder="Search a link…" autocomplete="off" spellcheck="false">
+        <kbd>/</kbd>
+      </div>
+    </header>
+
+    <!-- Favourites: the bar at the top -->
+    <nav class="favs" aria-label="Favourites">
+      <a href="https://youtube.com"><img src="icons/youtube.svg" alt="" width="36" height="36"><span>YouTube</span></a>
+      <a href="https://drive.google.com"><img src="icons/google-drive.svg" alt="" width="36" height="36"><span>Drive</span></a>
+      <a href="https://photos.example.com"><img src="icons/immich.svg" alt="" width="36" height="36"><span>Photos</span></a>
+      <a href="https://tv.example.com"><img src="icons/jellyfin.svg" alt="" width="36" height="36"><span>Jellyfin</span></a>
+      <a href="https://home.example.com"><img src="icons/home-assistant.svg" alt="" width="36" height="36"><span>Home Assistant</span></a>
+      <a href="https://nas.example.com"><img src="icons/unraid.svg" alt="" width="36" height="36"><span>NAS</span></a>
+    </nav>
+
+    <div class="tabs" id="tabs" role="tablist" aria-label="Sections"></div>
+
+    <p class="empty" id="empty" hidden>No links found.</p>
+
+    <!-- Links: each <div class="col"> is a column, each <section> a block.
+         A link: <li><a href="https://…" data-icon="name.svg">Name</a></li>
+         Collapsible block: class="fold" on the section, see the last block. -->
+    <div class="grid">
+      <div class="col">
+        <section data-section="Daily">
+          <h2>Daily<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://youtube.com" data-icon="youtube.svg">YouTube</a></li>
+            <li><a href="https://www.google.com" data-icon="google.svg">Google</a></li>
+            <li><a href="https://drive.google.com" data-icon="google-drive.svg">Drive</a></li>
+            <li><a href="https://photos.example.com" data-icon="immich.svg">Photos</a></li>
+            <li><a href="https://vault.example.com" data-icon="vaultwarden.svg">Passwords</a></li>
+            <li><a href="https://bookmarks.example.com" data-icon="karakeep.svg">Bookmarks</a></li>
+          </ul>
+        </section>
+
+        <section data-section="News">
+          <h2>News<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://www.vrt.be/vrtnws/nl/" data-icon="vrt.png">VRT NWS</a></li>
+            <li><a href="https://www.tijd.be" data-icon="tijd.png">De Tijd</a></li>
+            <li><a href="https://www.theguardian.com" data-icon="theguardian.png">The Guardian</a></li>
+            <li><a href="https://tweakers.net" data-icon="tweakers.png">Tweakers</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="col">
+        <section data-section="Weather">
+          <h2>Weather<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://www.buienradar.be" data-icon="buienradar.png">Buienradar</a></li>
+            <li><a href="https://www.meteo.be" data-icon="kmi.png">KMI</a></li>
+            <li><a href="https://www.windy.com" data-icon="windy.png">Windy</a></li>
+          </ul>
+        </section>
+
+        <section data-section="Shopping">
+          <h2>Shopping<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://www.bol.com" data-icon="bol.png">Bol</a></li>
+            <li><a href="https://www.coolblue.be" data-icon="coolblue.png">Coolblue</a></li>
+            <li><a href="https://www.amazon.com.be" data-icon="amazon.svg">Amazon</a></li>
+          </ul>
+        </section>
+
+        <section data-section="Music and books">
+          <h2>Music and books<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://music.example.com" data-icon="navidrome.svg">Navidrome</a></li>
+            <li><a href="https://audiobooks.example.com" data-icon="audiobookshelf.svg">Audiobookshelf</a></li>
+            <li><a href="https://www.goodreads.com" data-icon="goodreads.svg">Goodreads</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="col">
+        <section data-section="Media">
+          <h2>Media<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://tv.example.com" data-icon="jellyfin.svg">Jellyfin</a></li>
+            <li><a href="https://app.plex.tv" data-icon="plex.svg">Plex</a></li>
+            <li><a href="https://books.example.com" data-icon="calibre-web.svg">Books</a></li>
+          </ul>
+        </section>
+
+        <section data-section="Home">
+          <h2>Home<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://home.example.com" data-icon="home-assistant.svg">Home Assistant</a></li>
+            <li><a href="https://control.shelly.cloud" data-icon="shelly.svg">Shelly</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="col">
+        <section data-section="Network">
+          <h2>Network<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://login.tailscale.com/admin/machines" data-icon="tailscale.svg">Tailscale</a></li>
+            <li><a href="https://unifi.ui.com" data-icon="unifi.svg">UniFi</a></li>
+            <li><a href="https://dash.cloudflare.com" data-icon="cloudflare.svg">Cloudflare</a></li>
+            <li><a href="https://my.nextdns.io" data-icon="nextdns.svg">NextDNS</a></li>
+          </ul>
+        </section>
+
+        <section data-section="NAS">
+          <h2>NAS<span class="count"></span></h2>
+          <ul>
+            <li><a href="https://nas.example.com" data-icon="unraid.svg">NAS</a></li>
+            <li><a href="https://files.example.com" data-icon="filebrowser.svg">Files</a></li>
+            <li><a href="https://status.example.com" data-icon="uptime-kuma.svg">Uptime Kuma</a></li>
+            <li><a href="https://sync.example.com" data-icon="syncthing.svg">Syncthing</a></li>
+          </ul>
+        </section>
+
+        <section data-section="Direct (IP)" class="fold">
+          <h2><button type="button" class="fold-btn" aria-expanded="false">Direct (IP)</button><span class="count"></span></h2>
+          <ul>
+            <li><a href="http://192.168.1.10:8080" data-icon="unraid.svg">NAS direct</a></li>
+            <li><a href="http://192.168.1.1" data-icon="unifi.svg">Router</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+
+</html>
