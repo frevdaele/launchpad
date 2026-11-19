@@ -2,6 +2,12 @@
 
 A fast, dark start page with all your links in one place. No server, no database, no build step: three files and a folder of icons.
 
+## Why your own start page
+
+- **The same links everywhere.** Working on a computer that isn't yours, without your bookmarks? Just go to your start page (behind a login, of course) and every site you need is right there.
+- **Switch browsers freely.** Your links aren't locked into Chrome, Brave or Safari. Set the start page in the new browser and everything is back instantly, no bookmark import needed.
+- **Faster than bookmarks.** Press `/`, type two letters and hit `Enter`: you're where you need to be.
+
 ![Launchpad on desktop](screenshots/desktop.png)
 
 <img src="screenshots/mobile.png" alt="Launchpad on a phone" width="300">
